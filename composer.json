@@ -10,6 +10,9 @@
             "email": "maxime.merian@gmail.com"
         }
     ],
+    "require" : {
+        "doctrine/dbal": "2.*"
+    },
     "autoload": {
         "psr-0": {
             "DoctrineTimestamp": "lib"
