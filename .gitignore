@@ -1,0 +1,4 @@
+# Hide eclipse project data
+.buildpath
+.project
+.settings
