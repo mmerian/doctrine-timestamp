@@ -22,6 +22,6 @@ Just add this to your composer.json
 Then, when bootstraping your doctrine connection :
 
 ```php
-Type::addType('money', 'DoctrineTimestamp\DBAL\Types\Timestamp');
+Type::addType('timestamp', 'DoctrineTimestamp\DBAL\Types\Timestamp');
 $conn->getDatabasePlatform()->registerDoctrineTypeMapping('Timestamp', 'timestamp');
 ```
