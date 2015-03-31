@@ -31,7 +31,7 @@ class Timestamp extends Type
 
     public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return $platform->getIntegerTypeDeclaration($fieldDeclaration);
+        return $platform->getIntegerTypeDeclarationSQL($fieldDeclaration);
     }
 
     /**
