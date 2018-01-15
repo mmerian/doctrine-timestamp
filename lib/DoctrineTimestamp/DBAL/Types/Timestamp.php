@@ -47,7 +47,7 @@ class Timestamp extends Type
         if ($value instanceof \DateTime) {
             return $value->getTimestamp();
         }
-        return (int)$value;
+        return is_null($value) ? $value : (int)$value;
     }
 
     /**
