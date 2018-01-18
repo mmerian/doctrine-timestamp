@@ -47,7 +47,7 @@ class Timestamp extends Type
         if ($value instanceof \DateTime) {
             return $value->getTimestamp();
         }
-        return (int)$value;
+        return is_null($value) ? $value : (int)$value;
     }
 
     /**
@@ -60,6 +60,9 @@ class Timestamp extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
+	if (is_null($value)) {
+		return null;
+	}
         $dt = new \DateTime();
         $dt->setTimestamp($value);
         return $dt;
