@@ -31,7 +31,12 @@ class Timestamp extends Type
 
     public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
-        return $platform->getIntegerTypeDeclarationSQL($fieldDeclaration);
+        // Doctrine handle "version" fields as integer timestamp, and uses the
+        // timestamp field type if available. So using this behaviour should be
+        // the safest way to have a TIMESTAMP type field.
+        $fieldDeclaration['version'] = true;
+
+        return $platform->getDateTimeTypeDeclarationSQL($fieldDeclaration);
     }
 
     /**
