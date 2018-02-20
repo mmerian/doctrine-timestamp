@@ -6,6 +6,7 @@
 namespace DoctrineTimestamp\DBAL\Types;
 
 use Doctrine\DBAL\Types\Type;
+use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
@@ -44,10 +45,19 @@ class Timestamp extends Type
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
+        if (null === $value) {
+            return;
+        }
+
         if ($value instanceof \DateTime) {
             return $value->getTimestamp();
         }
-        return is_null($value) ? $value : (int)$value;
+
+        throw ConversionException::conversionFailedInvalidType(
+            $value,
+            $this->getName(),
+            ['null', 'DateTime']
+        );
     }
 
     /**
@@ -60,11 +70,13 @@ class Timestamp extends Type
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
-	if (is_null($value)) {
-		return null;
-	}
+        if (null === $value) {
+            return;
+        }
+
         $dt = new \DateTime();
         $dt->setTimestamp($value);
+
         return $dt;
     }
 }
