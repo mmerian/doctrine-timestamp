@@ -1,10 +1,8 @@
 <?php
-/**
- * Definition of the timestamp type for Doctrine 2
- */
 
 namespace DoctrineTimestamp\DBAL\Types;
 
+use DateTime;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
@@ -22,31 +20,28 @@ class Timestamp extends Type
     const TIMESTAMP = 'timestamp';
 
     /**
-     *
-     * @return string
+     * @inheritDoc
      */
     public function getName()
     {
         return self::TIMESTAMP;
     }
 
+    /**
+     * @inheritDoc
+     */
     public function getSqlDeclaration(array $fieldDeclaration, AbstractPlatform $platform)
     {
         return $platform->getIntegerTypeDeclarationSQL($fieldDeclaration);
     }
 
     /**
-     * Converts the timestamp to a value for database insertion
-     *
-     * @param mixed $value
-     * @param AbstractPlatform $platform
-     *
-     * @return int
+     * @inheritDoc
      */
     public function convertToDatabaseValue($value, AbstractPlatform $platform)
     {
         if (null === $value) {
-            return;
+            return null;
         }
 
         if ($value instanceof \DateTime) {
@@ -61,17 +56,12 @@ class Timestamp extends Type
     }
 
     /**
-     * Converts a value loaded from the database to a DateTime instance
-     *
-     * @param int $value
-     * @param AbstractPlatform $platform
-     *
-     * @return \DateTime
+     * @inheritDoc
      */
     public function convertToPHPValue($value, AbstractPlatform $platform)
     {
         if (null === $value) {
-            return;
+            return null;
         }
 
         $dt = new \DateTime();
