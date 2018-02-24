@@ -44,7 +44,7 @@ class Timestamp extends Type
             return null;
         }
 
-        if ($value instanceof \DateTime) {
+        if ($value instanceof DateTime) {
             return $value->getTimestamp();
         }
 
@@ -64,7 +64,7 @@ class Timestamp extends Type
             return null;
         }
 
-        $dt = new \DateTime();
+        $dt = new DateTime();
         $dt->setTimestamp($value);
 
         return $dt;
