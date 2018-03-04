@@ -2,7 +2,8 @@
 
 namespace DoctrineTimestamp\DBAL\Types;
 
-use DateTime;
+use DateTimeInterface;
+use DateTimeImmutable;
 use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
@@ -44,14 +45,14 @@ class Timestamp extends Type
             return null;
         }
 
-        if ($value instanceof DateTime) {
+        if ($value instanceof DateTimeInterface) {
             return $value->getTimestamp();
         }
 
         throw ConversionException::conversionFailedInvalidType(
             $value,
             $this->getName(),
-            ['null', 'DateTime']
+            ['null', 'DateTimeInterface']
         );
     }
 
@@ -64,9 +65,8 @@ class Timestamp extends Type
             return null;
         }
 
-        $dt = new DateTime();
-        $dt->setTimestamp($value);
-
-        return $dt;
+        $dt = new DateTimeImmutable();
+        
+        return $dt->setTimestamp($value);
     }
 }
