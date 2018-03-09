@@ -69,4 +69,20 @@ class Timestamp extends Type
 
         return $dt;
     }
+
+    /**
+     * @inheritDoc
+     */
+    public function getBindingType()
+    {
+        return \PDO::PARAM_INT;
+    }
+    
+    /**
+     * @inheritDoc
+     */
+    public function requiresSQLCommentHint(AbstractPlatform $platform)
+    {
+        return true;
+    }
 }
