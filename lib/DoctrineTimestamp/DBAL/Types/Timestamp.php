@@ -8,7 +8,7 @@ use Doctrine\DBAL\Types\ConversionException;
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 
 /**
- * Timestamp type for the Doctrine 2 ORM
+ * Timestamp type for the Doctrine ORM
  */
 class Timestamp extends Type
 {
