@@ -1,5 +1,5 @@
 {
-    "name": "mmerian/doctrine-timestamp",
+    "name": "chesscom/doctrine-timestamp",
     "type": "library",
     "description": "A library adding the timestamp type to Doctrine ORM",
     "keywords": ["Doctrine", "ORM", "timestamp", "DateTime"],
@@ -8,6 +8,10 @@
         {
             "name": "Maxime Mérian",
             "email": "maxime.merian@gmail.com"
+        },
+        {
+            "name": "Michael Dwyer",
+            "email": "dwyer@chess.com"
         }
     ],
     "require" : {
